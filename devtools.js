@@ -985,6 +985,8 @@ function battle_type_name(a, si) {
 	case 5: return '主徹カットイン';
 	case 6: return '主主カットイン';
 	case 7: return '戦爆連合カットイン';
+	case 100: return 'Nelson Touch';
+	case 101: return '長門一斉射';
 	default: return a; // 不明.
 	}
 }
@@ -1000,6 +1002,8 @@ function battle_sp_name(a, si) {
 	case 6: return '空母夜襲カットイン';
 	case 7: return '主魚電カットイン';
 	case 8: return '魚見電カットイン';
+	case 100: return 'Nelson Touch';
+	case 101: return '長門一斉射';
 	default: return a; // 不明.
 	}
 }
@@ -1382,7 +1386,7 @@ function push_air_base_status(tp, base, fg) {
 			+ get_air_base_action_name(action) + '</span>';
 		ra[3] = plane_brief;
 		ra[4] = '';
-		if (base.api_distance != 0) ra[4] += ' <span class="ts21"><i class="fas fa-map"></i>' + base.api_distance + '</span>';
+		if (base.api_distance) ra[4] += ' <span class="ts21"><i class="fas fa-map"></i>' + (base.api_distance.api_base + base.api_distance.api_bonus) + '</span>';
 		ra[4] += ' <span class="ts21"><i class="fas fa-fighter-jet"></i>' + Math.floor(slot_seiku) + '</span>';
 		ra[5] =  ' ' + get_squadron_cond_name(base_cond);
 		ra[6] = (base.api_area_id == 6 ? '中部海域' : 'イベント海域') + ' - ' + base.api_name;
@@ -2623,6 +2627,14 @@ function calc_damage(result, title, battle, fhp, ehp, active_deck, ff) {
 					target_hp = (ehp[target] -= Math.floor(damage));
 				}
 				// 砲撃戦:敵味方砲撃詳報収集.
+				var si2 = (/^連撃/.test(ty) && j < si.length) ? [si[j]] : si;
+				if (/^Nelson/.test(ty)) {
+					if (j == 1) at += 2; // change to 3rd ship
+					if (j == 2) at += 4; // change to 5th ship
+				}
+				else if (/^長門/.test(ty)) {
+					if (j == 2) at += 1; // change to 2nd ship
+				}
 				result.detail.push({ty: ty, at: at, target: target, ae: ae[i], ff: ff, si: si, cl: battle_cl_name(cl[j]), damage: damage, hp: target_hp});
 			}
 		}
@@ -3425,7 +3437,7 @@ chrome.devtools.network.onRequestFinished.addListener(function (request) {
 			var area = params.api_area_id;
 			var rid = params.api_base_id;
 			var plane_info = d.api_plane_info;
-			var distance = d.api_distance;
+			var distance = d.api_distance.api_base + d.api_distance.api_bonus;
 			if ($air_base_list[area]) {
 				if($air_base_list[area][rid]) {
 					if (distance != null) {

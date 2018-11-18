@@ -106,6 +106,9 @@
 
 .fa-minus-square:before {
   content: "\f146"; }
+  
+.fa-frown:before {
+  content: "\f119"; }
 
 /* スタイル設定 */
 
