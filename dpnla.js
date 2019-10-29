@@ -1,7 +1,7 @@
 /* ユーティリティ等 */
 if(typeof(dpnla) == 'undefined'){
 var dpnla = {
-	dat: new Array(),	// データ保存用
+		data: [],	// データ保存用
 	init: function(){
 	/* 初期化 */
 		this.tabinit(0,'t01');	this.tabinit(0,'t11');	this.tabinit(2,'t31');	this.tabinit(2,'t41');
@@ -16,7 +16,7 @@ var dpnla = {
 	 * 1:ページの(←)マイナス(→)プラス…0)なし、1)あり
 	 * 2:２ヶ所の画面切替が…0)なし、1)あり
 	 */
-		var i = 0;	var j = 1;	var fg = new Array();
+			var i = 0;	var j = 1;	var fg = [];
 		for(i = 0;i < 2;i++){
 			if(i > 0) j = Math.pow(2,i);
 			fg[i] = pt & j;
@@ -117,7 +117,7 @@ var dpnla = {
 	},
 	posget: function(id){
 	/* 選択記憶＆最大取得 */
-		var pa = new Array();
+			var pa = [];
 		var ky = id +'_mx';		pa[0] = this.dat[ky];
 				ky = id +'_ns';		pa[1] = this.dat[ky];
 		return pa;
@@ -136,7 +136,7 @@ var dpnla = {
 	 * 2:文字列か配列か…0)文字列、1)配列
 	 * 4:配列の次元数…0)一次元、1)二次元
 	 */
-		var i = 0;	var j = 1;	var fg = new Array();
+			var i = 0;	var j = 1;	var fg = [];
 		for(i = 0;i < 3;i++){
 			if(i > 0) j = Math.pow(2,i);
 			fg[i] = pt & j;
@@ -252,7 +252,7 @@ var dpnla = {
 	},
 	kcprecdel: function(pt){
 	/* 記録消去確認 */
-		var ky = '';	var ra = new Array();
+			var ky = '';	var ra = [];
 		switch(pt){
 		 case 0:
 			ky = 'logbook';		ra = ['b561v','b561d'];		break;
@@ -342,7 +342,7 @@ var dpnla = {
 	},
 	getmatupdary: function(pt){
 	/* 資材増減項目別配列取得 */
-		var ra = new Array();
+			var ra = [];
 		switch(pt){
 			case 0:		ra = $material.now;		break;
 			case 1:		ra = $material.beg;		break;
@@ -412,7 +412,7 @@ var dpnla = {
 	},
 	daytimchg: function(p,d){
 	/* 日付オブジェクトの値を日時文字列に変換する */
-		var a = new Array();	var r = '';		var i = 0;
+			var a = [];	var r = '';		var i = 0;
 		a[0] = d.getYear();		a[1] = d.getMonth() + 1;	a[2] = d.getDate();
 		if(a[0] < 2000) a[0] += 1900;
 		a[3] = d.getHours();	a[4] = d.getMinutes();	a[5] = d.getSeconds();
@@ -430,9 +430,9 @@ var dpnla = {
 		 case 2:	// 12/31 23:59:59
 			r = a[1] +'/'+ a[2] +' '+ a[3] +':'+ a[4] +':'+ a[5];		break;
 		 case 3:	// 数値配列返却
-			r = new Array();	r = b;	break;
+				r = [];	r = b;	break;
 		 case 4:	// 文字列配列返却
-			r = new Array();	r = a;	break;
+				r = [];	r = a;	break;
 		 default:	// 2014/12/31 23:59:59
 			r = a[0] +'/'+ a[1] +'/'+ a[2] +' '+ a[3] +':'+ a[4] +':'+ a[5];	break;
 		}
@@ -440,7 +440,7 @@ var dpnla = {
 	},
 	strtimchg: function(tm,pt){
 	/* ミリ秒の値を時分秒に変換する */
-		var a = new Array();	var i = 0;
+			var a = [];	var i = 0;
 		a[0] = Math.floor(tm / 1000);		a[1] = Math.floor(a[0] / 60);
 		a[2] = Math.floor(a[1] / 60);		a[3] = a[0] % 60;		a[4] = a[1] % 60;
 		for(i = 2;i < 5;i++){

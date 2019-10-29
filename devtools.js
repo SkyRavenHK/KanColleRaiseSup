@@ -9,7 +9,7 @@ var $ship_list		= load_storage('ship_list');
 var $slotitem_list	= load_storage('slotitem_list');
 var $air_base_list	= load_storage('air_base_list');
 var $enemy_db		= load_storage('enemy_db');
-var $enemy_list	= load_storage('enemy_list');
+var $enemy_list		= load_storage('enemy_list');
 var $weekly			= load_storage('weekly');
 var $logbook		= load_storage('logbook', []);
 var $tmp_ship_id = -1000;	// ドロップ艦の仮ID.
@@ -544,8 +544,8 @@ function weekly_name() {
 		+' 】';
 }
 
-function to_string(id,nullstr) {	///< id == null に対して代理文字列を返し、例外落ちしない.
-	if (id == null) return nullstr ? nullstr : '';
+function to_string(id,nullstr = '') {	///< id == null に対して代理文字列を返し、例外落ちしない.
+	if (id == null) return nullstr;
 	return id.toString();
 }
 
