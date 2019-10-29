@@ -1676,7 +1676,7 @@ function print_port() {
 		ht += '</div>';
 		dpnla.tmpviw(0,'t31_1_a',ht);
 		dpnla.tmpviw(0,'t31_1',dpnla.tmpagemk(ky,cd));
-		dpnla.tabinit(1,ky);	dpnla.tabdef(ky);
+		dpnla.tabInit(1,ky);	dpnla.tabdef(ky);
 		dpnla.ge('c56').value = mc[2];
 	}else{
 		dpnla.tmpviw(0,'t31_1_a','');		dpnla.tmpviw(0,'t31_1','');
@@ -1756,7 +1756,7 @@ function print_port() {
 		ht += '</div>';
 		dpnla.tmpviw(0,'t31_2_a',ht);
 		dpnla.tmpviw(0,'t31_2',dpnla.tmpagemk(ky,cd));
-		dpnla.tabinit(1,ky);	dpnla.tabdef(ky);
+		dpnla.tabInit(1,ky);	dpnla.tabdef(ky);
 	}else{
 		dpnla.tmpviw(0,'t31_2_a','');		dpnla.tmpviw(0,'t31_2','');
 	}
@@ -1900,7 +1900,7 @@ function print_port() {
 			ky = hb[i][1];	j = i + 1;
 			dpnla.tmpviw(0,'t52_'+ j,dpnla.tmpagemk(ky,hb[i][5],1));
 			dpnla.tmpviw(0,'t52_'+ j +'_a',hb[i][0]);
-			dpnla.tabinit(0,ky);	dpnla.tabdef(ky);
+			dpnla.tabInit(0,ky);	dpnla.tabdef(ky);
 		}
 	}else{
 		dpnla.tmpviw(0,'t51_1','');
@@ -1968,7 +1968,7 @@ function print_port() {
 		ht += '</div>';
 		dpnla.tmpviw(0,'t31_4_a',ht);
 		dpnla.tmpviw(0,'t31_4',dpnla.tmpagemk(ky,cd));
-		dpnla.tabinit(1,ky);	dpnla.tabdef(ky);
+		dpnla.tabInit(1,ky);	dpnla.tabdef(ky);
 	}else{
 		dpnla.tmpviw(0,'t31_4_a','');		dpnla.tmpviw(0,'t31_4','');
 	}
@@ -2028,7 +2028,7 @@ function print_port() {
 		ht += '</div>';
 		dpnla.tmpviw(0,'t31_3_a',ht);
 		dpnla.tmpviw(0,'t31_3',dpnla.tmpagemk(ky,cd));
-		dpnla.tabinit(1,ky);	dpnla.tabdef(ky);
+		dpnla.tabInit(1,ky);	dpnla.tabdef(ky);
 	}else{
 		dpnla.tmpviw(0,'t31_3_a','');		dpnla.tmpviw(0,'t31_3','');
 	}
@@ -2084,16 +2084,22 @@ function print_port() {
 	}
 	dpnla.tmpviw(0,'t56_1',dpnla.tmprep(2,ra,tp[0]));		dpnla.tmpviw(0,'t56_2',dpnla.tmprep(2,rb,tp[0]));
 	if(logcnt > 0){
-		dpnla.addevent(dpnla.ge('b561v'),'click',function(){ dpnla.kcprecviw(0); });
-		dpnla.addevent(dpnla.ge('b561d'),'click',function(){ dpnla.kcprecdel(0); });
+		$('#b561v').click(() => { dpnla.kcprecviw(0); });
+		$('#b561d').click(() => { dpnla.kcprecdel(0); });
+	//	dpnla.addevent(dpnla.ge('b561v'),'click',function(){ dpnla.kcprecviw(0); });
+	//	dpnla.addevent(dpnla.ge('b561d'),'click',function(){ dpnla.kcprecdel(0); });
 	}
 	if(enmcnt > 0){
-		dpnla.addevent(dpnla.ge('b562v'),'click',function(){ dpnla.kcprecviw(1); });
-		dpnla.addevent(dpnla.ge('b562d'),'click',function(){ dpnla.kcprecdel(1); });
+		$('#b562v').click(() => { dpnla.kcprecviw(1); });
+		$('#b562d').click(() => { dpnla.kcprecdel(1); });
+	//	dpnla.addevent(dpnla.ge('b562v'),'click',function(){ dpnla.kcprecviw(1); });
+	//	dpnla.addevent(dpnla.ge('b562d'),'click',function(){ dpnla.kcprecdel(1); });
 	}else{
 		if(emycnt > 0){
-			dpnla.addevent(dpnla.ge('b562v'),'click',function(){ dpnla.kcprecviw(2); });
-			dpnla.addevent(dpnla.ge('b562d'),'click',function(){ dpnla.kcprecdel(2); });
+			$('#b562v').click(() => { dpnla.kcprecviw(2); });
+			$('#b562d').click(() => { dpnla.kcprecdel(2); });
+		//	dpnla.addevent(dpnla.ge('b562v'),'click',function(){ dpnla.kcprecviw(2); });
+		//	dpnla.addevent(dpnla.ge('b562d'),'click',function(){ dpnla.kcprecdel(2); });
 		}
 	}
 	var req = {};		ht = '';	tp = dpnla.tmpget('tp1_2');		tb = dpnla.tmpget('tp1_3');
@@ -2141,10 +2147,12 @@ function print_port() {
 	mc[3] += dpnla.tmprep(2,me,tp[5]) + mc[4];
 	dpnla.tmpviw(0,'t11_1',mc[3]);
 	if(ndocks > 0){
-		dpnla.addevent(dpnla.ge('b12n'),'click',function(){ dpnla.tabsel('t01',2); dpnla.tabsel('t31',2); });
+		$('#b12n').click(() => { dpnla.tabSelect('t01',2); dpnla.tabSelect('t31',2); });
+	//	dpnla.addevent(dpnla.ge('b12n'),'click',function(){ dpnla.tabSelect('t01',2); dpnla.tabSelect('t31',2); });
 	}
 	if(kdocks > 0){
-		dpnla.addevent(dpnla.ge('b12k'),'click',function(){ dpnla.tabsel('t01',2); dpnla.tabsel('t31',4); });
+		$('#b12k').click(() => { dpnla.tabSelect('t01',2); dpnla.tabSelect('t31',4); });
+	//	dpnla.addevent(dpnla.ge('b12k'),'click',function(){ dpnla.tabSelect('t01',2); dpnla.tabSelect('t31',4); });
 	}
 }
 
@@ -2274,7 +2282,7 @@ function push_all_fleets(req) {
 		j = i + 1;	ky = 't21_'+ j;		dpnla.tmpviw(0,ky,ht[i]);
 	}
 	dpnla.tmpviw(0,'c21',dpnla.tmptabmk('t21',ma));
-	dpnla.tabinit(0,'t21');		dpnla.tabdef('t21');
+	dpnla.tabInit(0,'t21');		dpnla.tabdef('t21');
 }
 
 //------------------------------------------------------------------------
@@ -2419,8 +2427,8 @@ function on_next_cell(json) {
 			}
 		}
 		dpnla.tmpviw(0,'c45',ha);		dpnla.tmpviw(0,'c43','&nbsp;');
-		if(ha != '') dpnla.tabinit(0,ky);
-		dpnla.tmpviw(1,'c41',arow +'敵 '+ area);	dpnla.tabsel('t41',0);
+		if(ha != '') dpnla.tabInit(0,ky);
+		dpnla.tmpviw(1,'c41',arow +'敵 '+ area);	dpnla.tabSelect('t41',0);
 	}
 	ra = request_date_time();		ra.push(dpnla.kcpstimeview());
 	dpnla.tmpviw(0,'c47',dpnla.tmprep(2,ra,tp[10]));
